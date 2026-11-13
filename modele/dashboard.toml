@@ -1,0 +1,25 @@
+name = "Nom du projet"
+tagline = "Une phrase : ce que c’est"
+identity = "Auteur public"
+locale = "fr"
+host = "127.0.0.1"
+port = 3847
+
+[sources]
+decisions = "DECISIONS.md"
+jalon_glob = "J*.md"
+
+[[milestones]]
+id = "J0"
+title = "Socle"
+
+[[milestones]]
+id = "J1"
+title = "Suite"
+
+[[constraints]]
+text = "127.0.0.1 seulement. Markdown = source."
+
+[lanes.sales]
+title = "Vente"
+decision_ids = []

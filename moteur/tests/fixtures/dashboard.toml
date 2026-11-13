@@ -1,0 +1,32 @@
+name = "Fixture"
+tagline = "Projet de test"
+identity = "Goheakan"
+locale = "fr"
+host = "127.0.0.1"
+port = 3847
+
+[sources]
+decisions = "DECISIONS.md"
+jalon_glob = "J*.md"
+
+[[milestones]]
+id = "J0"
+title = "Socle"
+
+[[milestones]]
+id = "J1"
+title = "Suite"
+
+[[constraints]]
+text = "Pas de sudo."
+
+[lanes.sales]
+title = "Vente"
+decision_ids = ["D3"]
+
+[[extras]]
+id = "PLAY"
+title = "Publication"
+lane = "sales"
+summary = "Plus tard."
+from_jalon = "J1"

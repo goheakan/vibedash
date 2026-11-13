@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; connect-src 'self'; style-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+  <title>VibeDash</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="icon" href="/static/icon.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="skip" href="#main">Aller au contenu</a>
+  <div id="app">
+    <aside class="rail" id="rail"></aside>
+    <div class="shell">
+      <div class="sticky-head">
+        <nav class="tabs" id="tabs" aria-label="Projets"></nav>
+        <header class="top" id="top"></header>
+      </div>
+      <main id="main" tabindex="-1"></main>
+    </div>
+  </div>
+  <aside class="drawer" id="drawer" hidden></aside>
+  <div class="scrim" id="scrim" hidden></div>
+  <div class="modal" id="palette" hidden></div>
+  <div class="modal" id="open-project" hidden></div>
+  <div class="modal" id="help" hidden></div>
+  <p class="crash" id="crash" hidden></p>
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Lance le tableau. Le moteur reste moteur/server.py.
+# Le dossier courant n'est pas changé : un --project relatif part de là.
+
+set -euo pipefail
+
+source="${BASH_SOURCE[0]}"
+while [ -L "$source" ]; do
+  dir="$(cd "$(dirname "$source")" && pwd)"
+  source="$(readlink "$source")"
+  if [[ "$source" != /* ]]; then
+    source="$dir/$source"
+  fi
+done
+root="$(cd "$(dirname "$source")/.." && pwd)"
+
+if ! command -v python3 >/dev/null 2>&1; then
+  echo "erreur : python3 introuvable" >&2
+  exit 1
+fi
+
+exec python3 "$root/moteur/server.py" "$@"
