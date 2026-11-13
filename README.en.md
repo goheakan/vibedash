@@ -2,6 +2,8 @@
 
 [Français](README.md) · [English](README.en.md) · [Español](README.es.md)
 
+<img src="moteur/static/lockup.png" alt="VibeDash" width="520">
+
 Local dashboard for vibe-coding. It tracks a project’s **decisions**, **milestones** and **sales** notes on your own machine, with no account.
 
 The screen is in French. This guide is here so the same tool can be understood in English.

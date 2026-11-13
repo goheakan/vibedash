@@ -93,7 +93,7 @@ body {
   align-items: center;
   padding: 4px 8px 16px;
 }
-.brand img { width: 28px; height: 28px; }
+.brand img { height: 36px; width: auto; display: block; }
 .brand strong { display: block; font-size: 15px; }
 .brand span { color: var(--dim); font-size: 12px; }
 .nav-btn {

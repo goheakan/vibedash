@@ -40,10 +40,20 @@ Publication du 2026-11-13, dépôt `goheakan/vibedash`. `git` est en `2.56.1` (r
 
 ## Logo
 
-Le dessin actuel de `moteur/static/icon.svg` reste : carré sombre, quatre tuiles. Prompt pour Grok Imagine, si une version plus finie est voulue plus tard :
+Le symbole en service est `moteur/static/mark.png`, tiré de `logo-VD-vibedash.jpg`. Il est l'icône du navigateur et la marque dans la colonne. Le bandeau `moteur/static/lockup.png`, tiré de `VibeDash-horizontal.jpg`, est en tête des trois guides. Le damier des JPEG a été retiré. `moteur/static/icon.svg` reste le premier dessin, il n'est plus affiché.
+
+Prompt du symbole :
 
 ```
-Icône d'application carrée, plate, professionnelle, sur fond transparent. Un carré presque plein cadre, fond #161920, coins arrondis d'environ un cinquième du côté. Dedans, une grille de deux par deux, marges égales, intervalle étroit. Chaque tuile a des coins légèrement arrondis. Haut gauche : #e0b36a, opaque. Haut droite : #7cbc8e à 90 % d'opacité. Bas gauche : #7ba3d4 à 90 % d'opacité. Bas droite : #ece8e1 à 25 % d'opacité, un souffle clair sur le fond sombre. Aucun texte, aucune lettre, aucun dégradé, aucune ombre, aucun relief, aucun contour blanc, aucun autre symbole. Rendu net, vectoriel, calme, marque d'outil de bureau.
+Reprends cette icône telle quelle et ne change que les lettres. Garde le carré #161920, les coins arrondis, la grille de deux par deux, les marges et l'intervalle. Garde les quatre tuiles : haut gauche #e0b36a opaque, haut droite #7cbc8e à 90 %, bas gauche #7ba3d4 à 90 %, bas droite #ece8e1 à 25 %. Aucun dégradé, aucune ombre, aucun relief, aucun contour.
+
+Ajoute deux capitales dessinées pour cette marque, sans géométrique, graisse moyenne, même hauteur. Un V centré dans la tuile or, en #ece8e1. Un D centré dans la tuile blanche, en #e0b36a. Les deux lettres reposent sur la même ligne, avec de l'air autour d'elles, sans toucher le bord de leur tuile. Les tuiles bleue et claire restent vides. Aucun autre texte, aucun mot, aucun symbole.
+```
+
+Prompt du bandeau :
+
+```
+Composition horizontale, fond transparent, style d'identité d'un outil professionnel. À gauche, le symbole fourni, inchangé : carré arrondi #161920, quatre tuiles, V en #ece8e1 sur #e0b36a, D en #e0b36a sur #ece8e1, tuile #7cbc8e et tuile #7ba3d4 à 25 % sans lettre. À droite, sur la même ligne médiane, le nom VibeDash. Une seule ligne, même sans géométrique que le V et le D, couleur #ece8e1, casses V et D capitales, le reste en bas de casse. Espace large et régulier entre le symbole et le nom. Aucun slogan, aucune ombre, aucun relief, aucun dégradé, aucun fond texturé, aucun autre mot.
 ```
 
 ## Hors périmètre

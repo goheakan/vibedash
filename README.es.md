@@ -2,6 +2,8 @@
 
 [Français](README.md) · [English](README.en.md) · [Español](README.es.md)
 
+<img src="moteur/static/lockup.png" alt="VibeDash" width="520">
+
 Tablero local para el vibe-coding. Sigue las **decisiones**, los **hitos** y las notas de **venta** de un proyecto, en el propio equipo, sin cuenta.
 
 La pantalla está en francés. Esta guía explica la misma herramienta en español.

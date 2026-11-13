@@ -221,7 +221,7 @@ function renderIdle(title, tagline, mainHtml) {
   renderTabs();
   ui.rail.innerHTML = `
     <div class="brand">
-      <img src="/static/icon.svg" alt="">
+      <img src="/static/mark.png" alt="VibeDash">
       <div>
         <strong>${esc(title)}</strong>
         <span>local</span>
@@ -347,7 +347,7 @@ function renderRail() {
   ];
   ui.rail.innerHTML = `
     <div class="brand">
-      <img src="/static/icon.svg" alt="">
+      <img src="/static/mark.png" alt="VibeDash">
       <div>
         <strong>${esc(d.project.name)}</strong>
         <span>${esc(d.project.identity || "local")}</span>
