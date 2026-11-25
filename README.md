@@ -19,34 +19,48 @@ Un seul tableau ouvert dans le navigateur montre un ou plusieurs projets. Chaque
 - Retirer un onglet ne supprime pas les fichiers du projet.
 - Le champ `port` d’un projet n’est pas le port du tableau.
 
-## Lancer
+## Installer
 
-Python 3.11 ou plus récent, bibliothèque standard.
+Python 3.11 ou plus récent, bibliothèque standard. Depuis ce dépôt :
 
 ```bash
-./bin/dashboard
+./install.sh
+```
+
+Le script pose un lien `vibedash` dans `~/.local/bin`. Il ne copie pas le moteur, il n’utilise pas `sudo`, et il ne remplace pas un fichier déjà présent. Si ce dossier n’est pas dans le `PATH`, le script indique la ligne à lancer.
+
+## Lancer
+
+```bash
+vibedash
+```
+
+Ou, sans installation :
+
+```bash
+./bin/vibedash
 ```
 
 Ouvrir `http://127.0.0.1:3847`. **Ouvrir**, ou la touche `o`, demande le dossier d’un projet qui contient déjà un `dashboard.toml`. Rien n’est écrit dans ce dossier.
 
 ```bash
-./bin/dashboard --project /chemin/vers/un/projet
+vibedash --project /chemin/vers/un/projet
 ```
 
 Dans un dossier de projet, vide ou pas :
 
 ```bash
-/chemin/vers/ce/dépôt/bin/dashboard init
-/chemin/vers/ce/dépôt/bin/dashboard serve
+vibedash init
+vibedash serve
 ```
 
-`init` écrit `dashboard.toml` et `DECISIONS.md` seulement s'ils manquent. Il n'écrase rien. Les chemins dans le toml restent relatifs au projet. `serve` ouvre ce dossier dans le tableau.
+`init` écrit `dashboard.toml` et `DECISIONS.md` seulement s’ils manquent. Il n’écrase rien. Les chemins dans le toml restent relatifs au projet. `serve` ouvre ce dossier dans le tableau.
 
-Sans sous-commande, le même dossier est ouvert dès qu'il contient déjà un `dashboard.toml`. `--dump` sans `--project` lit alors ce dossier. Le JSON affiché ne contient pas le chemin du dossier.
+Sans sous-commande, le même dossier est ouvert dès qu’il contient déjà un `dashboard.toml`. `--dump` sans `--project` lit alors ce dossier. Le JSON affiché ne contient pas le chemin du dossier.
 
-S'il existe `dashboard-moteur/server.py` dans le dossier courant, et que ce fichier reste dans `dashboard-moteur/`, c'est ce moteur qui tourne. Un lien qui sort de ce dossier est ignoré : le moteur de ce dépôt est utilisé.
+S’il existe `dashboard-moteur/server.py` dans le dossier courant, et que ce fichier reste dans `dashboard-moteur/`, c’est ce moteur qui tourne. Un lien qui sort de ce dossier est ignoré : le moteur de ce dépôt est utilisé.
 
-`init --vendor` copie le moteur dans `dashboard-moteur/` (sans les tests) et écrit `scripts/dashboard.sh`. Rien n'est écrasé. Ce script ne contient pas de chemin vers ce dépôt. Depuis le dossier du projet, y compris après l'avoir copié ailleurs :
+`init --vendor` copie le moteur dans `dashboard-moteur/` (sans les tests) et écrit `scripts/dashboard.sh`. Rien n’est écrasé. Ce script ne contient pas de chemin vers ce dépôt. Depuis le dossier du projet, y compris après l’avoir copié ailleurs :
 
 ```bash
 ./scripts/dashboard.sh

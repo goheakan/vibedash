@@ -19,25 +19,39 @@ One browser page shows one or more projects. Each project is a tab. The words co
 - Closing a tab does not delete the project files.
 - The `port` field inside a project is not the port of the dashboard.
 
-## Run
+## Install
 
-Python 3.11 or newer, standard library only.
+Python 3.11 or newer, standard library only. From this repository:
 
 ```bash
-./bin/dashboard
+./install.sh
+```
+
+The script places a `vibedash` link in `~/.local/bin`. It does not copy the engine, it does not use `sudo`, and it does not replace a file that is already there. If that folder is not on `PATH`, the script prints the line to run.
+
+## Run
+
+```bash
+vibedash
+```
+
+Or, without installing:
+
+```bash
+./bin/vibedash
 ```
 
 Open `http://127.0.0.1:3847`. **Ouvrir**, or the `o` key, asks for a project folder that already contains a `dashboard.toml`. Nothing is written into that folder.
 
 ```bash
-./bin/dashboard --project /path/to/a/project
+vibedash --project /path/to/a/project
 ```
 
 From a project folder, empty or not:
 
 ```bash
-/path/to/this/repository/bin/dashboard init
-/path/to/this/repository/bin/dashboard serve
+vibedash init
+vibedash serve
 ```
 
 `init` writes `dashboard.toml` and `DECISIONS.md` only when they are missing. It does not overwrite. Paths inside the toml stay relative to the project. `serve` opens that folder in the dashboard.

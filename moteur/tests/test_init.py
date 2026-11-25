@@ -16,7 +16,7 @@ sys.path.insert(0, str(ROOT))
 from scaffold import init_project
 
 REPO = Path(__file__).resolve().parents[2]
-SCRIPT = REPO / "bin" / "dashboard"
+SCRIPT = REPO / "bin" / "vibedash"
 
 
 class InitTests(unittest.TestCase):

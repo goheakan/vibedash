@@ -82,7 +82,7 @@ Les consigner dans un `DECISIONS.md` **de ce dossier** (le dashboard du dashboar
 | ID | Question | Reco |
 |---|---|---|
 | **D1** | Forme du déploiement | **Tranchée le 2026-11-13, go J0.** (b) un moteur unique dans ce dépôt. `init` / `serve` sur le dossier courant : J1 et J2. `init --vendor` : J3. |
-| **D2** | Nom de la commande | **Tranchée le 2026-11-13.** `bin/dashboard`, script bash. Pas d'install système, pas de `~/bin` sans OK. |
+| **D2** | Nom de la commande | **Tranchée le 2026-11-25.** `bin/vibedash`, script bash. `./install.sh` pose un lien dans `~/.local/bin`. Pas de `sudo`, pas d'install système. |
 | **D3** | Ports | 3847 par défaut. Si le port est pris : le dire. Pas de port suivant automatique. |
 | **D5** | Plusieurs projets en même temps | **Tranchée le 2026-11-13.** Un processus, un port, un onglet par projet. Registre des chemins hors du dépôt. Le `port` d'un `dashboard.toml` n'est pas écouté. Voir `DECISIONS.md`. |
 | **D4** | Licence de **cet** outil | **Tranchée le 2026-11-13.** MIT, comme `vb-optifree`. |
@@ -105,8 +105,8 @@ Fait le 2026-11-13, en attente de validation. Voir `J1.md`.
 - Commande unique, depuis **n’importe quel** dossier projet :
 
   ```bash
-  python3 /chemin/vers/Dashboard_Projet/bin/dashboard.py init
-  # ou le script retenu en D2
+  /chemin/vers/ce/dépôt/bin/vibedash init
+  # ou vibedash init, après ./install.sh
   ```
 
 - Crée `dashboard.toml` et `DECISIONS.md` **seulement s’ils n’existent pas** (ne pas écraser).

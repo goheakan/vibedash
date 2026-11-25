@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Le script bin/dashboard atteint le moteur sans changer de dossier."""
+"""Le script bin/vibedash atteint le moteur sans changer de dossier."""
 
 import os
 import subprocess
@@ -12,7 +12,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 REPO = Path(__file__).resolve().parents[2]
-SCRIPT = REPO / "bin" / "dashboard"
+SCRIPT = REPO / "bin" / "vibedash"
+INSTALL = REPO / "install.sh"
 FIX = Path(__file__).resolve().parent / "fixtures"
 
 
@@ -88,6 +89,50 @@ class LauncherTests(unittest.TestCase):
         )
         self.assertEqual(proc.returncode, 0, proc.stderr)
         self.assertIn("Fixture", proc.stdout)
+
+    def test_install_links_the_command_without_replacing_a_file(self):
+        dest = self.root / "commandes"
+        env = self.env.copy()
+        env["VIBEDASH_BIN_DIR"] = str(dest)
+        text = INSTALL.read_text(encoding="utf-8")
+        self.assertNotIn("/home/", text)
+        self.assertNotIn("sudo", text)
+        first = subprocess.run(
+            [str(INSTALL)],
+            cwd=self.root,
+            env=env,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(first.returncode, 0, first.stderr)
+        self.assertIn("Installé", first.stdout)
+        link = dest / "vibedash"
+        self.assertTrue(link.is_symlink())
+        self.assertEqual(link.resolve(), SCRIPT.resolve())
+        again = subprocess.run(
+            [str(INSTALL)],
+            cwd=self.root,
+            env=env,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(again.returncode, 0, again.stderr)
+        self.assertIn("Déjà en place", again.stdout)
+        link.unlink()
+        link.write_text("GARDE\n", encoding="utf-8")
+        blocked = subprocess.run(
+            [str(INSTALL)],
+            cwd=self.root,
+            env=env,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(blocked.returncode, 1)
+        self.assertEqual(link.read_text(encoding="utf-8"), "GARDE\n")
+        self.assertNotIn(str(dest), blocked.stderr)
 
 
 if __name__ == "__main__":

@@ -19,25 +19,39 @@ Una sola página del navegador muestra uno o varios proyectos. Cada proyecto es 
 - Cerrar una pestaña no borra los archivos del proyecto.
 - El campo `port` de un proyecto no es el puerto del tablero.
 
-## Arranque
+## Instalación
 
-Python 3.11 o más reciente, solo la biblioteca estándar.
+Python 3.11 o más reciente, solo la biblioteca estándar. Desde este repositorio:
 
 ```bash
-./bin/dashboard
+./install.sh
+```
+
+El script crea un enlace `vibedash` en `~/.local/bin`. No copia el motor, no usa `sudo` y no sustituye un archivo que ya exista. Si esa carpeta no está en el `PATH`, el script muestra la línea que hay que lanzar.
+
+## Arranque
+
+```bash
+vibedash
+```
+
+O, sin instalar:
+
+```bash
+./bin/vibedash
 ```
 
 Abrir `http://127.0.0.1:3847`. **Ouvrir**, o la tecla `o`, pide la carpeta de un proyecto que ya tenga un `dashboard.toml`. No se escribe nada en esa carpeta.
 
 ```bash
-./bin/dashboard --project /ruta/hacia/un/proyecto
+vibedash --project /ruta/hacia/un/proyecto
 ```
 
 Desde la carpeta de un proyecto, vacía o no:
 
 ```bash
-/ruta/hacia/este/repositorio/bin/dashboard init
-/ruta/hacia/este/repositorio/bin/dashboard serve
+vibedash init
+vibedash serve
 ```
 
 `init` escribe `dashboard.toml` y `DECISIONS.md` solo si faltan. No sobrescribe. Las rutas del toml siguen siendo relativas al proyecto. `serve` abre esa carpeta en el tablero.

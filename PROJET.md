@@ -8,16 +8,17 @@ Outil local pour voir les décisions prises ou restantes, les jalons, et la vent
 
 Le moteur sert **plusieurs projets déjà créés** dans un seul tableau : un processus, un port, un onglet par projet. Décision D5, tranchée. Détail et rapport : `J_onglets.md`, `DECISIONS.md`.
 
-Lancer : `./bin/dashboard`, puis **Ouvrir** (touche `o`) avec le dossier qui contient `dashboard.toml`. Le script transmet les arguments à `moteur/server.py`. Le moteur reste Python (D6). Les chemins restent dans le registre local (`$XDG_CONFIG_HOME/dashboard-projet/projets.json`, sinon `~/.config/dashboard-projet/projets.json`). Retirer un onglet ne supprime pas les fichiers. Le Markdown de chaque projet reste la source.
+Lancer : `./install.sh`, puis `vibedash`. Sans installation : `./bin/vibedash`. Ensuite **Ouvrir** (touche `o`) avec le dossier qui contient `dashboard.toml`. Le script transmet les arguments à `moteur/server.py`. Le moteur reste Python (D6). Les chemins restent dans le registre local (`$XDG_CONFIG_HOME/dashboard-projet/projets.json`, sinon `~/.config/dashboard-projet/projets.json`). Retirer un onglet ne supprime pas les fichiers. Le Markdown de chaque projet reste la source.
 
-J0 est fait. J1 est fait : `bin/dashboard init` crée `dashboard.toml` et `DECISIONS.md` sans les écraser, `bin/dashboard serve` ouvre le dossier courant. Compte rendu : `J1.md`. J2 est fait : sans sous-commande, un dossier qui a déjà `dashboard.toml` est ouvert, et `dashboard-moteur/server.py` n'est lancé que s'il reste dans ce dossier. Compte rendu : `J2.md`. J3 est fait : `init --vendor` copie le moteur sans les tests et écrit `scripts/dashboard.sh`. Le dossier copié se sert sans ce dépôt. Compte rendu : `J3.md`. J4 est fait : `/api/state` contient les décisions du modèle, la CSP reste en place, le clavier est documenté dans les trois guides. Compte rendu : `J4.md`. Aucun projet réel n'est branché.
+J0 est fait. J1 est fait : `init` crée `dashboard.toml` et `DECISIONS.md` sans les écraser, `serve` ouvre le dossier courant. Compte rendu : `J1.md`. La commande s'appelle `bin/vibedash`. J2 est fait : sans sous-commande, un dossier qui a déjà `dashboard.toml` est ouvert, et `dashboard-moteur/server.py` n'est lancé que s'il reste dans ce dossier. Compte rendu : `J2.md`. J3 est fait : `init --vendor` copie le moteur sans les tests et écrit `scripts/dashboard.sh`. Le dossier copié se sert sans ce dépôt. Compte rendu : `J3.md`. J4 est fait : `/api/state` contient les décisions du modèle, la CSP reste en place, le clavier est documenté dans les trois guides. Compte rendu : `J4.md`. Aucun projet réel n'est branché.
 
 ## Ce que ce dossier contient
 
 | Chemin | Rôle |
 |---|---|
 | `PLAN_GROK_BUILD.md` | Feuille d'instructions |
-| `bin/dashboard` | Script bash qui lance le moteur |
+| `bin/vibedash` | Script bash qui lance le moteur |
+| `install.sh` | Lien utilisateur vers cette commande, sans sudo |
 | `DECISIONS.md` | D1, D2, D4, D5, D6 et D7 tranchées |
 | `J0.md` | Socle et rapport de vérification |
 | `J1.md` | Init d'un projet et rapport de vérification |

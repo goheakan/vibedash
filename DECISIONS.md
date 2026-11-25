@@ -3,7 +3,7 @@
 | ID | Statut | Date | Choix |
 |---|---|---|---|
 | D1 | **tranché** | 2026-11-13 | Un moteur unique dans ce dépôt. `init` et `serve` viendront sur le dossier courant |
-| D2 | **tranché** | 2026-11-13 | La commande est `bin/dashboard`, un script bash |
+| D2 | **tranché** | 2026-11-25 | La commande est `bin/vibedash`. `./install.sh` pose un lien utilisateur |
 | D4 | **tranché** | 2026-11-13 | MIT, le même texte que `vb-optifree` |
 | D5 | **tranché** | 2026-11-13 | Un processus, un port, un onglet par projet |
 | D6 | **tranché** | 2026-11-13 | Le moteur reste Python. Pas de réécriture Rust |
@@ -13,7 +13,7 @@ D3 est couverte par D5 : un port, 3847 par défaut. Si ce port est pris, le prog
 
 ## D1 — Déploiement
 
-Forme (b) du plan, tranchée avec le go J0. Un seul moteur, celui de ce dépôt. `bin/dashboard` le lance. `init` et `serve` agissent sur le dossier courant (J1). `init --vendor` copie ce moteur dans le projet, avec `scripts/dashboard.sh` (J3). Le script ne contient pas de chemin vers ce dépôt.
+Forme (b) du plan, tranchée avec le go J0. Un seul moteur, celui de ce dépôt. `bin/vibedash` le lance. `init` et `serve` agissent sur le dossier courant (J1). `init --vendor` copie ce moteur dans le projet, avec `scripts/dashboard.sh` (J3). Le script ne contient pas de chemin vers ce dépôt.
 
 ## D4 — Licence
 
@@ -25,7 +25,7 @@ VibeDash mélange vibe-coding et dashboard. Le dépôt public est `goheakan/vibe
 
 ## D2 — Commande
 
-`bin/dashboard` lance `moteur/server.py` et transmet les arguments. Il ne change pas le dossier courant. Il n'est pas copié dans `~/bin` ni installé sur le système.
+`bin/vibedash` lance `moteur/server.py` et transmet les arguments. Il ne change pas le dossier courant. Le 2026-11-13 le fichier s'appelait `bin/dashboard`. Le 2026-11-25 il prend le nom de la commande. `./install.sh` pose un lien dans `~/.local/bin`, ou dans `VIBEDASH_BIN_DIR`. Pas de `sudo`, pas d'install système, pas d'écrasement d'un fichier déjà là.
 
 ## D6 — Python, pas Rust
 
