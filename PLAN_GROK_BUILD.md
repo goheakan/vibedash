@@ -132,6 +132,8 @@ Fait le 2026-11-25, en attente de validation. Voir `J3.md`.
 
 ### J4 — Vérifs et cibles
 
+Fait le 2026-11-25, en attente de validation. Voir `J4.md`.
+
 - Tests parseur + au moins un parcours HTTP (`/api/state` contient les D* du modèle).
 - CSP déjà dans `index.html` : la garder.
 - Documenter le clavier dans `README.md`.

@@ -73,7 +73,8 @@ Le détail du format est dans `SCHEMA.md`. Un squelette est dans `modele/`.
 | Touche | Action |
 |---|---|
 | `o` | Ouvrir un projet |
-| `/` | Chercher |
+| `/` ou `Ctrl+K` | Chercher |
+| `↑` / `↓` | Dans la recherche, ligne suivante ou précédente |
 | `g` puis `i`, `d`, `j` ou `v` | Maintenant, Décisions, Jalons, Vente |
 | `j` / `k` | Élément suivant / précédent |
 | Entrée | Ouvrir la carte |

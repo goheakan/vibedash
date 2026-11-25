@@ -73,7 +73,8 @@ El formato completo está en `SCHEMA.md` (francés). Un modelo vacío está en `
 | Tecla | Acción |
 |---|---|
 | `o` | Abrir un proyecto |
-| `/` | Buscar |
+| `/` o `Ctrl+K` | Buscar |
+| `↑` / `↓` | En la búsqueda, línea siguiente o anterior |
 | `g` y luego `i`, `d`, `j` o `v` | Ahora, Decisiones, Hitos, Venta |
 | `j` / `k` | Elemento siguiente / anterior |
 | Intro | Abrir la ficha |

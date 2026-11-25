@@ -584,7 +584,8 @@ function showHelp() {
     <div class="help">
       <h2>Clavier</h2>
       <table>
-        <tr><td>/</td><td>chercher (palette)</td></tr>
+        <tr><td>/ ou Ctrl+K</td><td>chercher (palette)</td></tr>
+        <tr><td>↑ / ↓</td><td>dans la recherche, ligne suivante / précédente</td></tr>
         <tr><td>g i / g d / g j / g v</td><td>Maintenant, Décisions, Jalons, Vente</td></tr>
         <tr><td>j / k</td><td>élément suivant / précédent</td></tr>
         <tr><td>Entrée</td><td>ouvrir</td></tr>

@@ -73,7 +73,8 @@ The full format is in `SCHEMA.md` (French). A blank copy is in `modele/`.
 | Key | Action |
 |---|---|
 | `o` | Open a project |
-| `/` | Search |
+| `/` or `Ctrl+K` | Search |
+| `↑` / `↓` | In the search, next or previous line |
 | `g` then `i`, `d`, `j` or `v` | Now, Decisions, Milestones, Sales |
 | `j` / `k` | Next / previous item |
 | Enter | Open the card |

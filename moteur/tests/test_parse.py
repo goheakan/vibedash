@@ -9,6 +9,7 @@ sys.path.insert(0, str(ROOT))
 from parse import ParseError, load, parse_decisions
 
 FIX = Path(__file__).resolve().parent / "fixtures"
+MODEL = Path(__file__).resolve().parents[2] / "modele"
 
 
 class ParseTests(unittest.TestCase):
@@ -31,6 +32,15 @@ class ParseTests(unittest.TestCase):
         play = next(x for x in data["sales"] if x["id"] == "PLAY")
         self.assertEqual(play["bucket"], "pending")
         self.assertEqual(data["sales"][0]["id"], "D3")
+
+    def test_model_lists_its_pending_decision(self):
+        data = load(MODEL)
+        decisions = data["decisions"]
+        self.assertEqual([item["id"] for item in decisions], ["D1"])
+        self.assertEqual(decisions[0]["title"], "Première décision")
+        self.assertEqual(decisions[0]["bucket"], "pending")
+        self.assertIn("Pas encore tranché", decisions[0]["body"])
+        self.assertNotIn("/home/", decisions[0]["body"])
 
     def test_refuse_secret(self):
         from parse import resolve_allowed

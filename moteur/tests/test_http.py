@@ -108,6 +108,39 @@ class HttpTests(unittest.TestCase):
         self.assertIn('id="tabs"', html)
         self.assertIn('id="open-project"', html)
 
+    def test_model_state_contains_its_decisions_and_the_page_keeps_the_csp(self):
+        model = Path(__file__).resolve().parents[2] / "modele"
+        status, body, _mime = self.request("POST", "/api/projects", {"path": str(model)})
+        self.assertEqual(status, 200, body)
+        opened = json.loads(body)
+        self.assertNotIn(str(model), body)
+        project_id = opened["project"]["id"]
+        status, body, _mime = self.request("GET", "/api/state?project=" + project_id)
+        self.assertEqual(status, 200, body)
+        state = json.loads(body)
+        self.assertEqual([item["id"] for item in state["decisions"]], ["D1"])
+        self.assertEqual(state["decisions"][0]["title"], "Première décision")
+        self.assertEqual(state["decisions"][0]["bucket"], "pending")
+        self.assertIn("Pas encore tranché", body)
+        self.assertNotIn("/home/", body)
+        self.assertNotIn(str(model), body)
+        status, html, mime = self.request("GET", "/")
+        self.assertEqual(status, 200)
+        self.assertIn("text/html", mime)
+        csp = (
+            "default-src 'self'; img-src 'self' data:; connect-src 'self'; "
+            "style-src 'self'; script-src 'self'; base-uri 'none'; "
+            "form-action 'none'; frame-ancestors 'none'"
+        )
+        self.assertIn(csp, html)
+        self.assertNotIn("unsafe-inline", html)
+        self.assertNotIn("unsafe-eval", html)
+        status, script, mime = self.request("GET", "/static/app.js")
+        self.assertEqual(status, 200)
+        self.assertIn("javascript", mime)
+        self.assertIn("Ctrl+K", script)
+        self.assertIn("dans la recherche", script)
+
     def test_refuse_a_folder_without_toml_without_echoing_the_path(self):
         secret = str(self.root / "absent")
         status, body, _mime = self.request("POST", "/api/projects", {"path": secret})
@@ -163,6 +196,30 @@ class HttpTests(unittest.TestCase):
         self.assertIn("/api/projects", js)
         self.assertIn('data-act="open"', js)
         self.assertIn("data-project", js)
+
+
+class GuideTests(unittest.TestCase):
+    def test_guides_document_the_keyboard(self):
+        repo = Path(__file__).resolve().parents[2]
+        guides = {
+            "README.md": "## Clavier",
+            "README.en.md": "## Keyboard",
+            "README.es.md": "## Teclado",
+        }
+        for name, heading in guides.items():
+            text = (repo / name).read_text(encoding="utf-8")
+            self.assertIn(heading, text)
+            self.assertIn("`o`", text)
+            self.assertIn("`/`", text)
+            self.assertIn("Ctrl+K", text)
+            self.assertIn("`j` / `k`", text)
+            self.assertIn("`?`", text)
+        french = (repo / "README.md").read_text(encoding="utf-8")
+        english = (repo / "README.en.md").read_text(encoding="utf-8")
+        spanish = (repo / "README.es.md").read_text(encoding="utf-8")
+        self.assertIn("Dans la recherche", french)
+        self.assertIn("In the search", english)
+        self.assertIn("En la búsqueda", spanish)
 
 
 if __name__ == "__main__":
