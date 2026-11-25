@@ -1,6 +1,6 @@
 # VibeDash — persistance
 
-Date : 2026-11-13.
+Date : 2026-11-25.
 
 Outil local pour voir les décisions prises ou restantes, les jalons, et la vente. Réutilisable. Privacy-first, self-host / 127.0.0.1, FLOSS, pas de SaaS.
 
@@ -10,7 +10,7 @@ Le moteur sert **plusieurs projets déjà créés** dans un seul tableau : un pr
 
 Lancer : `./bin/dashboard`, puis **Ouvrir** (touche `o`) avec le dossier qui contient `dashboard.toml`. Le script transmet les arguments à `moteur/server.py`. Le moteur reste Python (D6). Les chemins restent dans le registre local (`$XDG_CONFIG_HOME/dashboard-projet/projets.json`, sinon `~/.config/dashboard-projet/projets.json`). Retirer un onglet ne supprime pas les fichiers. Le Markdown de chaque projet reste la source.
 
-J0 est fait. J1 est fait : `bin/dashboard init` crée `dashboard.toml` et `DECISIONS.md` sans les écraser, `bin/dashboard serve` ouvre le dossier courant. Compte rendu : `J1.md`. La suite attend un go J2. Ensuite : le durcissement de `serve` (J2), le kit autonome (J3), les vérifs de J4.
+J0 est fait. J1 est fait : `bin/dashboard init` crée `dashboard.toml` et `DECISIONS.md` sans les écraser, `bin/dashboard serve` ouvre le dossier courant. Compte rendu : `J1.md`. J2 est fait : sans sous-commande, un dossier qui a déjà `dashboard.toml` est ouvert, et `dashboard-moteur/server.py` n'est lancé que s'il reste dans ce dossier. Compte rendu : `J2.md`. La suite attend un go J3. Ensuite : le kit autonome (J3), les vérifs de J4.
 
 ## Ce que ce dossier contient
 
@@ -21,6 +21,7 @@ J0 est fait. J1 est fait : `bin/dashboard init` crée `dashboard.toml` et `DECIS
 | `DECISIONS.md` | D1, D2, D4, D5, D6 et D7 tranchées |
 | `J0.md` | Socle et rapport de vérification |
 | `J1.md` | Init d'un projet et rapport de vérification |
+| `J2.md` | Serve implicite et moteur local confiné |
 | `J_onglets.md` | Jalon onglets et rapport de vérification |
 | `SCHEMA.md` | Contrat `dashboard.toml` + `DECISIONS.md` |
 | `moteur/` | Parseur, registre, serveur, HTML |
@@ -31,7 +32,7 @@ Rien d'un autre projet (pas d'app, pas de secrets, pas de chemins personnels).
 
 ## Sécurité git
 
-Publication du 2026-11-13, dépôt `goheakan/vibedash`. `git` est en `2.56.1` (relu ce jour-là). `gitleaks` n'est pas installé : relecture manuelle, pas de secret, pas d'adresse de réseau, pas de chemin personnel. `projets.json` et `grok_session.sh` sont ignorés. Le registre par défaut est hors de l'arbre.
+Publication du 2026-11-13, dépôt `goheakan/vibedash`. `git` est en `2.56.1` (relu ce jour-là). Ce jour-là, `gitleaks` n'était pas installé : relecture manuelle, pas de secret, pas d'adresse de réseau, pas de chemin personnel. Relevé du 2026-11-25 : `gitleaks` est installé. `gitleaks detect --redact` sur les commits, puis sur l'arbre avec `--no-git`, ne trouve aucun secret. `projets.json` et `grok_session.sh` sont ignorés. Le registre par défaut est hors de l'arbre.
 
 - Le dossier n'est pas le home.
 - Pas de `.gitmodules`. Remote HTTPS `https://github.com/goheakan/vibedash.git`, sans jeton dans l'URL. Même méthode que les dépôts OpenCode qui poussent déjà. `credential.helper` reste `libsecret`.
@@ -67,4 +68,4 @@ Composition horizontale, fond transparent, style d'identité d'un outil professi
 
 ## Suite
 
-Le tableau multi-projets est utilisable. J1 est rendu. Le jalon suivant (J2, `serve` sans chemin cassé) attend un go J2 écrit.
+Le tableau multi-projets est utilisable. J2 est rendu. Le jalon suivant (J3, kit autonome `init --vendor`) attend un go J3 écrit.

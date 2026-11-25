@@ -42,6 +42,10 @@ Dans un dossier de projet, vide ou pas :
 
 `init` écrit `dashboard.toml` et `DECISIONS.md` seulement s'ils manquent. Il n'écrase rien. Les chemins dans le toml restent relatifs au projet. `serve` ouvre ce dossier dans le tableau.
 
+Sans sous-commande, le même dossier est ouvert dès qu'il contient déjà un `dashboard.toml`. `--dump` sans `--project` lit alors ce dossier. Le JSON affiché ne contient pas le chemin du dossier.
+
+S'il existe `dashboard-moteur/server.py` dans le dossier courant, et que ce fichier reste dans `dashboard-moteur/`, c'est ce moteur qui tourne. Un lien qui sort de ce dossier est ignoré : le moteur de ce dépôt est utilisé.
+
 Un chemin relatif part du dossier où la commande est lancée. Les projets déjà ouverts reviennent au prochain lancement. Leurs chemins restent dans un registre local (`$XDG_CONFIG_HOME/dashboard-projet/projets.json`, sinon `~/.config/dashboard-projet/projets.json`), pas dans ce dépôt.
 
 `--port` change le port du tableau. Le défaut est 3847. Ctrl+C arrête tout le tableau.

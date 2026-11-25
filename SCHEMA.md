@@ -4,7 +4,7 @@ Date : 2026-11-10.
 
 Fichiers à la **racine du projet suivi**, pas dans ce dépôt. Modèle prêt à copier : `modele/`.
 
-`bin/dashboard init`, lancé dans le dossier du projet, copie `dashboard.toml` et `DECISIONS.md` seulement s'ils manquent. `bin/dashboard serve` ouvre ensuite ce dossier.
+`bin/dashboard init`, lancé dans le dossier du projet, copie `dashboard.toml` et `DECISIONS.md` seulement s'ils manquent. `bin/dashboard serve` ouvre ensuite ce dossier. Sans sous-commande, `bin/dashboard` fait de même si `dashboard.toml` est déjà là. Un `dashboard-moteur/server.py` n'est lancé que s'il reste dans ce dossier.
 
 ## dashboard.toml
 

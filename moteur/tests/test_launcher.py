@@ -54,6 +54,27 @@ class LauncherTests(unittest.TestCase):
         self.assertEqual(proc.returncode, 0, proc.stderr)
         self.assertIn("Fixture", proc.stdout)
 
+    def test_local_engine_is_used_when_it_stays_inside_the_folder(self):
+        folder = self.root / "kit"
+        motor = folder / "dashboard-moteur"
+        motor.mkdir(parents=True)
+        (motor / "server.py").write_text("print('MOTEUR-LOCAL')\n", encoding="utf-8")
+        proc = self.run_script(["--dump"], cwd=folder)
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        self.assertIn("MOTEUR-LOCAL", proc.stdout)
+
+    def test_engine_symlink_outside_the_folder_is_ignored(self):
+        folder = self.root / "kit"
+        motor = folder / "dashboard-moteur"
+        motor.mkdir(parents=True)
+        outside = self.root / "dehors.py"
+        outside.write_text("print('DEHORS')\n", encoding="utf-8")
+        (motor / "server.py").symlink_to(outside)
+        proc = self.run_script(["--dump"], cwd=folder)
+        self.assertNotIn("DEHORS", proc.stdout)
+        self.assertNotIn("DEHORS", proc.stderr)
+        self.assertNotEqual(proc.returncode, 0)
+
     def test_symlink_still_finds_the_engine(self):
         link = self.root / "dashboard"
         link.symlink_to(SCRIPT)

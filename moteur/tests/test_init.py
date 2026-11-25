@@ -114,6 +114,48 @@ class InitTests(unittest.TestCase):
             if proc.stdout is not None:
                 proc.stdout.close()
 
+    def test_default_command_serves_the_current_project(self):
+        folder = self.root / "vide"
+        folder.mkdir()
+        init = self.run_script(["init"], folder)
+        self.assertEqual(init.returncode, 0, init.stderr)
+        proc = subprocess.Popen(
+            [str(SCRIPT), "--port", "0", "--registry", str(self.root / "defaut.json")],
+            cwd=folder,
+            env=self.env,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+            text=True,
+        )
+        url = ""
+        try:
+            assert proc.stdout is not None
+            for line in proc.stdout:
+                if "http://127.0.0.1:" in line:
+                    url = line.strip().split()[-1]
+                    break
+            self.assertTrue(url.startswith("http://127.0.0.1:"), url)
+            with urllib.request.urlopen(url + "/api/state", timeout=2) as res:
+                body = json.loads(res.read().decode())
+            self.assertEqual(body["project"]["name"], "Nom du projet")
+            self.assertNotIn("/home/", json.dumps(body))
+        finally:
+            proc.terminate()
+            proc.wait(timeout=3)
+            if proc.stdout is not None:
+                proc.stdout.close()
+
+    def test_dump_uses_the_current_project_without_a_home_path(self):
+        folder = self.root / "vide"
+        folder.mkdir()
+        init = self.run_script(["init"], folder)
+        self.assertEqual(init.returncode, 0, init.stderr)
+        proc = self.run_script(["--dump"], folder)
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        self.assertIn("Nom du projet", proc.stdout)
+        self.assertNotIn("/home/", proc.stdout)
+        self.assertNotIn(str(folder), proc.stdout)
+
     def test_serve_without_toml_fails_without_echoing_the_path(self):
         folder = self.root / "vide"
         folder.mkdir()

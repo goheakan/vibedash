@@ -42,6 +42,10 @@ From a project folder, empty or not:
 
 `init` writes `dashboard.toml` and `DECISIONS.md` only when they are missing. It does not overwrite. Paths inside the toml stay relative to the project. `serve` opens that folder in the dashboard.
 
+With no subcommand, the same folder is opened as soon as it already contains a `dashboard.toml`. `--dump` without `--project` then reads that folder. The printed JSON does not contain the folder path.
+
+If `dashboard-moteur/server.py` exists in the current folder and that file stays inside `dashboard-moteur/`, that engine runs. A link that leaves this folder is ignored: the engine from this repository is used.
+
 A relative path starts from the directory where you run the command. Projects you have opened come back the next time. Their paths stay in a local registry (`$XDG_CONFIG_HOME/dashboard-projet/projets.json`, or `~/.config/dashboard-projet/projets.json`). They are not stored in this repository.
 
 `--port` changes the dashboard port. The default is 3847. Ctrl+C stops the whole dashboard.

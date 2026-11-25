@@ -115,6 +115,8 @@ Fait le 2026-11-13, en attente de validation. Voir `J1.md`.
 
 ### J2 — Serve sans chemin cassé
 
+Fait le 2026-11-25, en attente de validation. Voir `J2.md`.
+
 - `serve` (défaut) : cwd = projet, moteur = ce dépôt **ou** `./dashboard-moteur/` vendored.
 - Bind forcé `127.0.0.1`.
 - `--dump` conserve le JSON sans `/home/…`.

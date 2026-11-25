@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# Lance le tableau. Le moteur reste moteur/server.py.
-# Le dossier courant n'est pas changé : un --project relatif part de là.
+# Lance le tableau. Le dossier courant n'est pas changé.
+# Moteur : ./dashboard-moteur/server.py s'il reste dans ce dossier,
+# sinon moteur/server.py de ce dépôt.
 
 set -euo pipefail
 
@@ -19,4 +20,19 @@ if ! command -v python3 >/dev/null 2>&1; then
   exit 1
 fi
 
-exec python3 -u "$root/moteur/server.py" "$@"
+engine="$root/moteur/server.py"
+local_dir="$PWD/dashboard-moteur"
+local_engine="$local_dir/server.py"
+if [ -e "$local_engine" ]; then
+  resolved_engine="$(readlink -f -- "$local_engine")"
+  resolved_dir="$(readlink -f -- "$local_dir")"
+  case "$resolved_engine" in
+    "$resolved_dir"/*)
+      if [ -f "$resolved_engine" ]; then
+        engine="$resolved_engine"
+      fi
+      ;;
+  esac
+fi
+
+exec python3 -u "$engine" "$@"

@@ -220,6 +220,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--dump", action="store_true", help="Afficher l'état JSON d'un projet et quitter")
     args = parser.parse_args(args_in)
     project = args.project or project_default
+    if not project and (Path.cwd() / "dashboard.toml").is_file():
+        project = "."
 
     if args.dump:
         if not project:

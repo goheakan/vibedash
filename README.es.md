@@ -42,6 +42,10 @@ Desde la carpeta de un proyecto, vacía o no:
 
 `init` escribe `dashboard.toml` y `DECISIONS.md` solo si faltan. No sobrescribe. Las rutas del toml siguen siendo relativas al proyecto. `serve` abre esa carpeta en el tablero.
 
+Sin subcomando, la misma carpeta se abre en cuanto ya contiene un `dashboard.toml`. `--dump` sin `--project` lee entonces esa carpeta. El JSON mostrado no contiene la ruta de la carpeta.
+
+Si existe `dashboard-moteur/server.py` en la carpeta actual y ese archivo permanece dentro de `dashboard-moteur/`, se usa ese motor. Un enlace que sale de esta carpeta se ignora: se usa el motor de este repositorio.
+
 Una ruta relativa parte de la carpeta donde se lanza el comando. Los proyectos ya abiertos vuelven la próxima vez. Sus rutas quedan en un registro local (`$XDG_CONFIG_HOME/dashboard-projet/projets.json`, o `~/.config/dashboard-projet/projets.json`). No están en este repositorio.
 
 `--port` cambia el puerto del tablero. El valor por defecto es 3847. Ctrl+C detiene todo el tablero.
