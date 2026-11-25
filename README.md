@@ -46,6 +46,12 @@ Sans sous-commande, le même dossier est ouvert dès qu'il contient déjà un `d
 
 S'il existe `dashboard-moteur/server.py` dans le dossier courant, et que ce fichier reste dans `dashboard-moteur/`, c'est ce moteur qui tourne. Un lien qui sort de ce dossier est ignoré : le moteur de ce dépôt est utilisé.
 
+`init --vendor` copie le moteur dans `dashboard-moteur/` (sans les tests) et écrit `scripts/dashboard.sh`. Rien n'est écrasé. Ce script ne contient pas de chemin vers ce dépôt. Depuis le dossier du projet, y compris après l'avoir copié ailleurs :
+
+```bash
+./scripts/dashboard.sh
+```
+
 Un chemin relatif part du dossier où la commande est lancée. Les projets déjà ouverts reviennent au prochain lancement. Leurs chemins restent dans un registre local (`$XDG_CONFIG_HOME/dashboard-projet/projets.json`, sinon `~/.config/dashboard-projet/projets.json`), pas dans ce dépôt.
 
 `--port` change le port du tableau. Le défaut est 3847. Ctrl+C arrête tout le tableau.
@@ -57,6 +63,8 @@ Un chemin relatif part du dossier où la commande est lancée. Les projets déj�
 | `dashboard.toml` | Nom, jalons, contraintes, cartes de vente |
 | `DECISIONS.md` | Tableau des décisions, puis une section par identifiant |
 | `J0.md`, `J1.md`, … | Un fichier présent signifie que le jalon est fait |
+| `dashboard-moteur/` | Copie du moteur, seulement après `init --vendor` |
+| `scripts/dashboard.sh` | Lance cette copie, sans chemin vers ce dépôt |
 
 Le détail du format est dans `SCHEMA.md`. Un squelette est dans `modele/`.
 

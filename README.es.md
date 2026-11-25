@@ -46,6 +46,12 @@ Sin subcomando, la misma carpeta se abre en cuanto ya contiene un `dashboard.tom
 
 Si existe `dashboard-moteur/server.py` en la carpeta actual y ese archivo permanece dentro de `dashboard-moteur/`, se usa ese motor. Un enlace que sale de esta carpeta se ignora: se usa el motor de este repositorio.
 
+`init --vendor` copia el motor en `dashboard-moteur/` (sin las pruebas) y escribe `scripts/dashboard.sh`. No sobrescribe nada. Ese script no contiene ninguna ruta hacia este repositorio. Desde la carpeta del proyecto, también después de copiarla a otro lugar:
+
+```bash
+./scripts/dashboard.sh
+```
+
 Una ruta relativa parte de la carpeta donde se lanza el comando. Los proyectos ya abiertos vuelven la próxima vez. Sus rutas quedan en un registro local (`$XDG_CONFIG_HOME/dashboard-projet/projets.json`, o `~/.config/dashboard-projet/projets.json`). No están en este repositorio.
 
 `--port` cambia el puerto del tablero. El valor por defecto es 3847. Ctrl+C detiene todo el tablero.
@@ -57,6 +63,8 @@ Una ruta relativa parte de la carpeta donde se lanza el comando. Los proyectos y
 | `dashboard.toml` | Nombre, hitos, reglas, fichas de venta |
 | `DECISIONS.md` | Tabla de decisiones y una sección por identificador |
 | `J0.md`, `J1.md`, … | Si el archivo existe, el hito está hecho |
+| `dashboard-moteur/` | Copia del motor, solo después de `init --vendor` |
+| `scripts/dashboard.sh` | Arranca esa copia, sin ruta hacia este repositorio |
 
 El formato completo está en `SCHEMA.md` (francés). Un modelo vacío está en `modele/`.
 

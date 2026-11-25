@@ -189,11 +189,14 @@ def build_handler(registry: Registry):
 
 
 def cmd_init(argv: list[str]) -> int:
-    if argv:
+    vendor = False
+    if argv == ["--vendor"]:
+        vendor = True
+    elif argv:
         print("erreur : init agit sur le dossier courant, sans autre argument", file=sys.stderr)
         return 1
     try:
-        created = init_project(Path.cwd())
+        created = init_project(Path.cwd(), vendor=vendor)
     except InitError as exc:
         print(f"erreur : {public_message(str(exc))}", file=sys.stderr)
         return 1

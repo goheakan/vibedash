@@ -125,6 +125,8 @@ Fait le 2026-11-25, en attente de validation. Voir `J2.md`.
 
 ### J3 — Kit autonome (option D1)
 
+Fait le 2026-11-25, en attente de validation. Voir `J3.md`.
+
 - `init --vendor` copie `moteur/` (sans tests, sans `__pycache__`) dans le projet, plus un `scripts/dashboard.sh` **relatif** qui n’a plus besoin de `Documents/Grok_Build`.
 - **Terminé quand** : on peut `cp -a` ce kit dans un autre arbre et servir sans ce dépôt.
 

@@ -13,7 +13,7 @@ D3 est couverte par D5 : un port, 3847 par défaut. Si ce port est pris, le prog
 
 ## D1 — Déploiement
 
-Forme (b) du plan, tranchée avec le go J0. Un seul moteur, celui de ce dépôt. `bin/dashboard` le lance. `init` et `serve` agissent sur le dossier courant (J1). `init --vendor`, le kit autonome, reste J3.
+Forme (b) du plan, tranchée avec le go J0. Un seul moteur, celui de ce dépôt. `bin/dashboard` le lance. `init` et `serve` agissent sur le dossier courant (J1). `init --vendor` copie ce moteur dans le projet, avec `scripts/dashboard.sh` (J3). Le script ne contient pas de chemin vers ce dépôt.
 
 ## D4 — Licence
 

@@ -46,6 +46,12 @@ With no subcommand, the same folder is opened as soon as it already contains a `
 
 If `dashboard-moteur/server.py` exists in the current folder and that file stays inside `dashboard-moteur/`, that engine runs. A link that leaves this folder is ignored: the engine from this repository is used.
 
+`init --vendor` copies the engine into `dashboard-moteur/` (without the tests) and writes `scripts/dashboard.sh`. Nothing is overwritten. That script contains no path to this repository. From the project folder, including after the folder has been copied elsewhere:
+
+```bash
+./scripts/dashboard.sh
+```
+
 A relative path starts from the directory where you run the command. Projects you have opened come back the next time. Their paths stay in a local registry (`$XDG_CONFIG_HOME/dashboard-projet/projets.json`, or `~/.config/dashboard-projet/projets.json`). They are not stored in this repository.
 
 `--port` changes the dashboard port. The default is 3847. Ctrl+C stops the whole dashboard.
@@ -57,6 +63,8 @@ A relative path starts from the directory where you run the command. Projects yo
 | `dashboard.toml` | Name, milestones, constraints, sales cards |
 | `DECISIONS.md` | A decision table, then one section per id |
 | `J0.md`, `J1.md`, … | If the file exists, that milestone is done |
+| `dashboard-moteur/` | Copy of the engine, only after `init --vendor` |
+| `scripts/dashboard.sh` | Starts that copy, with no path to this repository |
 
 The full format is in `SCHEMA.md` (French). A blank copy is in `modele/`.
 

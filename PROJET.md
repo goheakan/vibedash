@@ -10,7 +10,7 @@ Le moteur sert **plusieurs projets déjà créés** dans un seul tableau : un pr
 
 Lancer : `./bin/dashboard`, puis **Ouvrir** (touche `o`) avec le dossier qui contient `dashboard.toml`. Le script transmet les arguments à `moteur/server.py`. Le moteur reste Python (D6). Les chemins restent dans le registre local (`$XDG_CONFIG_HOME/dashboard-projet/projets.json`, sinon `~/.config/dashboard-projet/projets.json`). Retirer un onglet ne supprime pas les fichiers. Le Markdown de chaque projet reste la source.
 
-J0 est fait. J1 est fait : `bin/dashboard init` crée `dashboard.toml` et `DECISIONS.md` sans les écraser, `bin/dashboard serve` ouvre le dossier courant. Compte rendu : `J1.md`. J2 est fait : sans sous-commande, un dossier qui a déjà `dashboard.toml` est ouvert, et `dashboard-moteur/server.py` n'est lancé que s'il reste dans ce dossier. Compte rendu : `J2.md`. La suite attend un go J3. Ensuite : le kit autonome (J3), les vérifs de J4.
+J0 est fait. J1 est fait : `bin/dashboard init` crée `dashboard.toml` et `DECISIONS.md` sans les écraser, `bin/dashboard serve` ouvre le dossier courant. Compte rendu : `J1.md`. J2 est fait : sans sous-commande, un dossier qui a déjà `dashboard.toml` est ouvert, et `dashboard-moteur/server.py` n'est lancé que s'il reste dans ce dossier. Compte rendu : `J2.md`. J3 est fait : `init --vendor` copie le moteur sans les tests et écrit `scripts/dashboard.sh`. Le dossier copié se sert sans ce dépôt. Compte rendu : `J3.md`. La suite attend un go J4.
 
 ## Ce que ce dossier contient
 
@@ -22,6 +22,7 @@ J0 est fait. J1 est fait : `bin/dashboard init` crée `dashboard.toml` et `DECIS
 | `J0.md` | Socle et rapport de vérification |
 | `J1.md` | Init d'un projet et rapport de vérification |
 | `J2.md` | Serve implicite et moteur local confiné |
+| `J3.md` | Kit autonome et rapport de vérification |
 | `J_onglets.md` | Jalon onglets et rapport de vérification |
 | `SCHEMA.md` | Contrat `dashboard.toml` + `DECISIONS.md` |
 | `moteur/` | Parseur, registre, serveur, HTML |
@@ -68,4 +69,4 @@ Composition horizontale, fond transparent, style d'identité d'un outil professi
 
 ## Suite
 
-Le tableau multi-projets est utilisable. J2 est rendu. Le jalon suivant (J3, kit autonome `init --vendor`) attend un go J3 écrit.
+Le tableau multi-projets est utilisable. J3 est rendu. Le jalon suivant (J4, vérifs et cibles) attend un go J4 écrit.
