@@ -33,6 +33,15 @@ Ouvrir `http://127.0.0.1:3847`. **Ouvrir**, ou la touche `o`, demande le dossier
 ./bin/dashboard --project /chemin/vers/un/projet
 ```
 
+Dans un dossier de projet, vide ou pas :
+
+```bash
+/chemin/vers/ce/dépôt/bin/dashboard init
+/chemin/vers/ce/dépôt/bin/dashboard serve
+```
+
+`init` écrit `dashboard.toml` et `DECISIONS.md` seulement s'ils manquent. Il n'écrase rien. Les chemins dans le toml restent relatifs au projet. `serve` ouvre ce dossier dans le tableau.
+
 Un chemin relatif part du dossier où la commande est lancée. Les projets déjà ouverts reviennent au prochain lancement. Leurs chemins restent dans un registre local (`$XDG_CONFIG_HOME/dashboard-projet/projets.json`, sinon `~/.config/dashboard-projet/projets.json`), pas dans ce dépôt.
 
 `--port` change le port du tableau. Le défaut est 3847. Ctrl+C arrête tout le tableau.

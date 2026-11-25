@@ -8,7 +8,6 @@ import os
 import sys
 import tempfile
 import threading
-import time
 import unittest
 import urllib.error
 import urllib.request
@@ -38,13 +37,7 @@ class HttpTests(unittest.TestCase):
         self.thread.start()
         self.port = self.httpd.server_address[1]
         self.assertEqual(self.httpd.server_address[0], HOST_FORCED)
-        deadline = time.time() + 2
-        while time.time() < deadline:
-            try:
-                urllib.request.urlopen(f"http://{HOST_FORCED}:{self.port}/api/projects", timeout=0.2).close()
-                break
-            except OSError:
-                time.sleep(0.02)
+        urllib.request.urlopen(f"http://{HOST_FORCED}:{self.port}/api/projects", timeout=2).close()
 
     def tearDown(self):
         self.httpd.shutdown()

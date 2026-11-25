@@ -17,6 +17,7 @@ from urllib.parse import parse_qs, unquote, urlparse
 
 from parse import ParseError, load
 from registry import Registry, RegistryError, default_registry_path, public_message
+from scaffold import InitError, init_project
 
 ENGINE = Path(__file__).resolve().parent
 STATIC = ENGINE / "static"
@@ -187,20 +188,45 @@ def build_handler(registry: Registry):
     return Handler
 
 
+def cmd_init(argv: list[str]) -> int:
+    if argv:
+        print("erreur : init agit sur le dossier courant, sans autre argument", file=sys.stderr)
+        return 1
+    try:
+        created = init_project(Path.cwd())
+    except InitError as exc:
+        print(f"erreur : {public_message(str(exc))}", file=sys.stderr)
+        return 1
+    if created:
+        print("Créé : " + ", ".join(created), flush=True)
+    else:
+        print("Déjà en place.", flush=True)
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
+    args_in = list(sys.argv[1:] if argv is None else argv)
+    if args_in[:1] == ["init"]:
+        return cmd_init(args_in[1:])
+    project_default = ""
+    if args_in[:1] == ["serve"]:
+        project_default = "."
+        args_in = args_in[1:]
+
     parser = argparse.ArgumentParser(description="VibeDash, tableau local (127.0.0.1), plusieurs projets.")
     parser.add_argument("--project", default="", help="Ouvre ce dossier dans le tableau (optionnel)")
     parser.add_argument("--port", type=int, default=DEFAULT_PORT, help="Port du tableau (défaut 3847)")
     parser.add_argument("--registry", default="", help="Fichier du registre (sinon XDG ou DASHBOARD_REGISTRY)")
     parser.add_argument("--dump", action="store_true", help="Afficher l'état JSON d'un projet et quitter")
-    args = parser.parse_args(argv)
+    args = parser.parse_args(args_in)
+    project = args.project or project_default
 
     if args.dump:
-        if not args.project:
+        if not project:
             print("erreur : --dump exige --project", file=sys.stderr)
             return 1
         try:
-            state = load(Path(args.project).resolve())
+            state = load(Path(project).resolve())
         except ParseError as exc:
             print(f"erreur : {public_message(str(exc))}", file=sys.stderr)
             return 1
@@ -214,9 +240,9 @@ def main(argv: list[str] | None = None) -> int:
     else:
         reg_path = default_registry_path()
     registry = Registry(reg_path)
-    if args.project:
+    if project:
         try:
-            card = registry.open_path(args.project, Path.cwd())
+            card = registry.open_path(project, Path.cwd())
         except RegistryError as exc:
             print(f"erreur : {public_message(str(exc))}", file=sys.stderr)
             return 1

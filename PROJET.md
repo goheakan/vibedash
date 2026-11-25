@@ -10,7 +10,7 @@ Le moteur sert **plusieurs projets déjà créés** dans un seul tableau : un pr
 
 Lancer : `./bin/dashboard`, puis **Ouvrir** (touche `o`) avec le dossier qui contient `dashboard.toml`. Le script transmet les arguments à `moteur/server.py`. Le moteur reste Python (D6). Les chemins restent dans le registre local (`$XDG_CONFIG_HOME/dashboard-projet/projets.json`, sinon `~/.config/dashboard-projet/projets.json`). Retirer un onglet ne supprime pas les fichiers. Le Markdown de chaque projet reste la source.
 
-Ce qui manque encore, dans l'ordre du plan : J0 (D1), puis `init` / `serve` (J1–J2), le kit autonome (J3), les vérifs de J4. D2 et D6 sont tranchées. J2 ne demande plus deux serveurs en parallèle.
+J0 est fait. J1 est fait : `bin/dashboard init` crée `dashboard.toml` et `DECISIONS.md` sans les écraser, `bin/dashboard serve` ouvre le dossier courant. Compte rendu : `J1.md`. La suite attend un go J2. Ensuite : le durcissement de `serve` (J2), le kit autonome (J3), les vérifs de J4.
 
 ## Ce que ce dossier contient
 
@@ -18,7 +18,9 @@ Ce qui manque encore, dans l'ordre du plan : J0 (D1), puis `init` / `serve` (J1�
 |---|---|
 | `PLAN_GROK_BUILD.md` | Feuille d'instructions |
 | `bin/dashboard` | Script bash qui lance le moteur |
-| `DECISIONS.md` | D2, D4, D5, D6 et D7 tranchées. D1 ouverte |
+| `DECISIONS.md` | D1, D2, D4, D5, D6 et D7 tranchées |
+| `J0.md` | Socle et rapport de vérification |
+| `J1.md` | Init d'un projet et rapport de vérification |
 | `J_onglets.md` | Jalon onglets et rapport de vérification |
 | `SCHEMA.md` | Contrat `dashboard.toml` + `DECISIONS.md` |
 | `moteur/` | Parseur, registre, serveur, HTML |
@@ -65,4 +67,4 @@ Composition horizontale, fond transparent, style d'identité d'un outil professi
 
 ## Suite
 
-Le tableau multi-projets est utilisable. Le jalon suivant du plan (J0, puis la commande `init`) attend un go écrit.
+Le tableau multi-projets est utilisable. J1 est rendu. Le jalon suivant (J2, `serve` sans chemin cassé) attend un go J2 écrit.

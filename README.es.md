@@ -33,6 +33,15 @@ Abrir `http://127.0.0.1:3847`. **Ouvrir**, o la tecla `o`, pide la carpeta de un
 ./bin/dashboard --project /ruta/hacia/un/proyecto
 ```
 
+Desde la carpeta de un proyecto, vacía o no:
+
+```bash
+/ruta/hacia/este/repositorio/bin/dashboard init
+/ruta/hacia/este/repositorio/bin/dashboard serve
+```
+
+`init` escribe `dashboard.toml` y `DECISIONS.md` solo si faltan. No sobrescribe. Las rutas del toml siguen siendo relativas al proyecto. `serve` abre esa carpeta en el tablero.
+
 Una ruta relativa parte de la carpeta donde se lanza el comando. Los proyectos ya abiertos vuelven la próxima vez. Sus rutas quedan en un registro local (`$XDG_CONFIG_HOME/dashboard-projet/projets.json`, o `~/.config/dashboard-projet/projets.json`). No están en este repositorio.
 
 `--port` cambia el puerto del tablero. El valor por defecto es 3847. Ctrl+C detiene todo el tablero.

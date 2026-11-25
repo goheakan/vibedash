@@ -33,6 +33,15 @@ Open `http://127.0.0.1:3847`. **Ouvrir**, or the `o` key, asks for a project fol
 ./bin/dashboard --project /path/to/a/project
 ```
 
+From a project folder, empty or not:
+
+```bash
+/path/to/this/repository/bin/dashboard init
+/path/to/this/repository/bin/dashboard serve
+```
+
+`init` writes `dashboard.toml` and `DECISIONS.md` only when they are missing. It does not overwrite. Paths inside the toml stay relative to the project. `serve` opens that folder in the dashboard.
+
 A relative path starts from the directory where you run the command. Projects you have opened come back the next time. Their paths stay in a local registry (`$XDG_CONFIG_HOME/dashboard-projet/projets.json`, or `~/.config/dashboard-projet/projets.json`). They are not stored in this repository.
 
 `--port` changes the dashboard port. The default is 3847. Ctrl+C stops the whole dashboard.

@@ -2,13 +2,18 @@
 
 | ID | Statut | Date | Choix |
 |---|---|---|---|
+| D1 | **tranché** | 2026-11-13 | Un moteur unique dans ce dépôt. `init` et `serve` viendront sur le dossier courant |
 | D2 | **tranché** | 2026-11-13 | La commande est `bin/dashboard`, un script bash |
 | D4 | **tranché** | 2026-11-13 | MIT, le même texte que `vb-optifree` |
 | D5 | **tranché** | 2026-11-13 | Un processus, un port, un onglet par projet |
 | D6 | **tranché** | 2026-11-13 | Le moteur reste Python. Pas de réécriture Rust |
 | D7 | **tranché** | 2026-11-13 | Nom public VibeDash, dépôt `goheakan/vibedash` |
 
-D1 du plan reste ouverte. D3 est couverte par D5 : un port, 3847 par défaut.
+D3 est couverte par D5 : un port, 3847 par défaut. Si ce port est pris, le programme le dit et s'arrête.
+
+## D1 — Déploiement
+
+Forme (b) du plan, tranchée avec le go J0. Un seul moteur, celui de ce dépôt. `bin/dashboard` le lance. `init` et `serve` agissent sur le dossier courant (J1). `init --vendor`, le kit autonome, reste J3.
 
 ## D4 — Licence
 

@@ -4,6 +4,8 @@ Date : 2026-11-10.
 
 Fichiers à la **racine du projet suivi**, pas dans ce dépôt. Modèle prêt à copier : `modele/`.
 
+`bin/dashboard init`, lancé dans le dossier du projet, copie `dashboard.toml` et `DECISIONS.md` seulement s'ils manquent. `bin/dashboard serve` ouvre ensuite ce dossier.
+
 ## dashboard.toml
 
 À la racine du projet. Champs utiles :

@@ -81,7 +81,7 @@ Les consigner dans un `DECISIONS.md` **de ce dossier** (le dashboard du dashboar
 
 | ID | Question | Reco |
 |---|---|---|
-| **D1** | Forme du déploiement | **(b)** un moteur unique dans ce dossier + commande `init` / `serve` qui opère sur le cwd. En plus, `init --vendor` copie `moteur/` dans le projet si on veut un kit autonome (clé USB, autre machine). |
+| **D1** | Forme du déploiement | **Tranchée le 2026-11-13, go J0.** (b) un moteur unique dans ce dépôt. `init` / `serve` sur le dossier courant : J1 et J2. `init --vendor` : J3. |
 | **D2** | Nom de la commande | **Tranchée le 2026-11-13.** `bin/dashboard`, script bash. Pas d'install système, pas de `~/bin` sans OK. |
 | **D3** | Ports | 3847 par défaut. Si le port est pris : le dire. Pas de port suivant automatique. |
 | **D5** | Plusieurs projets en même temps | **Tranchée le 2026-11-13.** Un processus, un port, un onglet par projet. Registre des chemins hors du dépôt. Le `port` d'un `dashboard.toml` n'est pas écouté. Voir `DECISIONS.md`. |
@@ -99,6 +99,8 @@ Les consigner dans un `DECISIONS.md` **de ce dossier** (le dashboard du dashboar
 - ⛔ **CHECKPOINT** : D1 et D2 tranchés (D3–D4 peuvent attendre J2).
 
 ### J1 — Init d’un projet
+
+Fait le 2026-11-13, en attente de validation. Voir `J1.md`.
 
 - Commande unique, depuis **n’importe quel** dossier projet :
 
